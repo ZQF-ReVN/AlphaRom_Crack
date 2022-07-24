@@ -1,8 +1,6 @@
 #include "Hijack.h"
 #include <detours.h>
 
-HMODULE exeHmodule;
-
 typedef LPVOID(WINAPI* pVirtualAlloc)(
 	LPVOID lpAddress,
 	SIZE_T dwSize,
@@ -29,7 +27,6 @@ LPVOID WINAPI newVirtualAlloc(LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocati
 
 VOID StartHook()
 {
-	exeHmodule = GetModuleHandleW(NULL);
 	rawVirtualAlloc = VirtualAlloc;
 
 	DetourRestoreAfterWith();
