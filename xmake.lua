@@ -33,10 +33,20 @@ add_requires("microsoft-detours")
 
 
 -- targets
-target("version")
-    set_kind("shared")
+target("AlphaRomCrack")
+    set_kind("$(kind)")
+    if is_plat("windows") then
+        if is_kind("shared") then
+            add_rules("utils.symbols.export_all", {export_classes = true})
+        end
+    end
     add_syslinks("user32")
-    add_files("src/dllmain.cpp")
+    add_files("src/*.cpp")
     add_headerfiles("include/(**.h)")
     add_includedirs("include", {public = true})
     add_packages("microsoft-detours")
+
+target("version")
+    set_kind("shared")
+    add_files("test/dllmain.cpp")
+    add_deps("AlphaRomCrack")
