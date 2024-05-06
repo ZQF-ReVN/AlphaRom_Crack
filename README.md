@@ -1,4 +1,5 @@
 # AlphaRom_Crack
+simple demo to show how to crack a alpharom protected game
 
 ## Guide to remove Alpharom from executable:
 Run game.exe with compiled `version.dll`, then use [Magicmida](https://github.com/Hendi48/Magicmida) to unpack the execuatable.
