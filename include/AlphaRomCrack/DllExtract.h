@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace AlphaRomCheck
+namespace AlphaRomCrack
 {
 	auto ExtractSarcheck() -> void;
 }

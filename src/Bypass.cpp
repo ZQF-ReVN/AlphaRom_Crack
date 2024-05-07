@@ -3,7 +3,7 @@
 #include <detours.h>
 
 
-namespace AlphaRomCheck::Example
+namespace AlphaRomCrack::Example
 {
 	using Fn_VirtualAlloc_t = decltype(&::VirtualAlloc);
 	static Fn_VirtualAlloc_t sg_fnVirtualAlloc = ::VirtualAlloc;
@@ -32,18 +32,11 @@ namespace AlphaRomCheck::Example
 	}
 }
 
-namespace AlphaRomCheck
+namespace AlphaRomCrack
 {
-	static auto __stdcall ModifyEntrPointer(LPSarcheckInfo lpInfo) -> void
+	auto Bypass(Fn_FindCallback_t fnCallback) -> void
 	{
-		// 夏の終わりのニルヴァーナ
-		*(DWORD*)(((PBYTE)lpInfo->pDllData) + 0x2BA000) = 0x90000CC2; // Path DllEntryPoint
-		*(DWORD*)(((PBYTE)lpInfo->pDllData) + 0x002064) = 0x909090C3; // Path SARCHECK (export function)
-	}
-
-	auto Bypass() -> void
-	{
-		AlphaRomCheck::FindSarcheckDll(ModifyEntrPointer);
+		AlphaRomCrack::FindSarcheckDll(fnCallback);
 	}
 }
 

@@ -2,7 +2,7 @@
 #include <detours.h>
 
 
-namespace AlphaRomCheck
+namespace AlphaRomCrack
 {
 	static bool sg_isCheck = true;
 	static Fn_FindCallback_t sg_fnFindCallback;
@@ -56,10 +56,10 @@ namespace AlphaRomCheck
 		{ 
 			if (buffer_address && (dwSize > 8) && (flAllocationType == MEM_COMMIT) && (flProtec == PAGE_READWRITE))
 			{
-				AlphaRomCheck::PushAddress(buffer_address);
+				AlphaRomCrack::PushAddress(buffer_address);
 			}
 
-			LPSarcheckInfo info_ptr = AlphaRomCheck::QuerySarcheck();
+			LPSarcheckInfo info_ptr = AlphaRomCrack::QuerySarcheck();
 			if (info_ptr != nullptr)
 			{
 				sg_fnFindCallback(info_ptr);

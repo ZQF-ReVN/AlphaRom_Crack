@@ -1,12 +1,13 @@
 #pragma once
+#include <AlphaRomCrack/Define.h>
 
 
-namespace AlphaRomCheck::Example
+namespace AlphaRomCrack::Example
 {
 	auto Bypass() -> void;
 }
 
-namespace AlphaRomCheck
+namespace AlphaRomCrack
 {
-	auto Bypass() -> void;
+	auto Bypass(Fn_FindCallback_t fnCallback) -> void;
 }
