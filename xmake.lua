@@ -20,7 +20,6 @@ add_rules("mode.debug", "mode.release")
 
 -- lto
 if is_mode("release") then
-    set_warnings("all")
     set_policy("build.optimization.lto", true)
 end
 
@@ -36,15 +35,13 @@ add_requires("microsoft-detours")
 -- targets
 target("AlphaRomCrack")
     set_kind("$(kind)")
-    if is_plat("windows") then
-        if is_kind("shared") then
-            add_rules("utils.symbols.export_all", {export_classes = true})
-        end
+    if is_plat("windows") and is_kind("shared") then
+       add_rules("utils.symbols.export_all", {export_classes = true})
     end
     add_syslinks("user32")
     add_files("src/*.cpp")
-    add_headerfiles("include/(**.h)")
     add_includedirs("include", {public = true})
+    add_headerfiles("include/(**.h)")
     add_packages("microsoft-detours")
 
 target("version")
