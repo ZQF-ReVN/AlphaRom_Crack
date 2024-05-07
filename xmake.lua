@@ -15,6 +15,7 @@ set_allowedplats("windows", "mingw")
 set_allowedmodes("debug", "release")
 
 -- rules
+add_rules("plugin.vsxmake.autoupdate")
 add_rules("mode.debug", "mode.release")
 
 -- lto
@@ -47,6 +48,7 @@ target("AlphaRomCrack")
     add_packages("microsoft-detours")
 
 target("version")
+    set_default(false)
     set_kind("shared")
     add_files("test/dllmain.cpp")
     add_deps("AlphaRomCrack")

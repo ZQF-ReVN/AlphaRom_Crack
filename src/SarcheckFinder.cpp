@@ -1,6 +1,7 @@
 #include <AlphaRomCrack/SarcheckFinder.h>
 #include <detours.h>
 
+
 namespace AlphaRomCheck
 {
 	static bool sg_isCheck = true;
@@ -29,10 +30,16 @@ namespace AlphaRomCheck
 		{
 			if (address == nullptr) { return nullptr; }
 
+			if (!::VirtualQuery(address, &info, sizeof(info))) { continue; }
+			if (!(info.Type == MEM_PRIVATE && info.State == MEM_COMMIT && info.AllocationProtect == PAGE_READWRITE)) { continue; }
+
 			LPSarcheckInfo info_ptr = (SarcheckInfo*)address;
+			if (info_ptr->cpDllName == nullptr) { continue; }
 			if (!::VirtualQuery(info_ptr->cpDllName, &info, sizeof(info))) { continue; }
 			if (!(info.Type == MEM_IMAGE && info.State == MEM_COMMIT && info.AllocationProtect == PAGE_EXECUTE_WRITECOPY)) { continue; }
+
 			if (::strncmp("sarcheck.dll", info_ptr->cpDllName, 13)) { continue; }
+
 			if (!info_ptr->pDllData) { continue; }
 			if (((PIMAGE_DOS_HEADER)info_ptr->pDllData)->e_magic != IMAGE_DOS_SIGNATURE) { continue; }
 			return info_ptr;
@@ -49,10 +56,10 @@ namespace AlphaRomCheck
 		{ 
 			if (buffer_address && (dwSize > 8) && (flAllocationType == MEM_COMMIT) && (flProtec == PAGE_READWRITE))
 			{
-				PushAddress(buffer_address);
+				AlphaRomCheck::PushAddress(buffer_address);
 			}
 
-			LPSarcheckInfo info_ptr = QuerySarcheck();
+			LPSarcheckInfo info_ptr = AlphaRomCheck::QuerySarcheck();
 			if (info_ptr != nullptr)
 			{
 				sg_fnFindCallback(info_ptr);

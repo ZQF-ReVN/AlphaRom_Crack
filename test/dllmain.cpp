@@ -8,7 +8,7 @@ static auto StartHook() -> void
 	AlphaRomCheck::Bypass();
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
+auto APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) -> BOOL
 {
 	switch (ul_reason_for_call)
 	{

@@ -36,7 +36,9 @@ namespace AlphaRomCheck
 {
 	static auto __stdcall ModifyEntrPointer(LPSarcheckInfo lpInfo) -> void
 	{
-		*(DWORD*)(((PBYTE)lpInfo->pDllData) + 0x29D000) = 0x90000CC2;
+		// 夏の終わりのニルヴァーナ
+		*(DWORD*)(((PBYTE)lpInfo->pDllData) + 0x2BA000) = 0x90000CC2; // Path DllEntryPoint
+		*(DWORD*)(((PBYTE)lpInfo->pDllData) + 0x002064) = 0x909090C3; // Path SARCHECK (export function)
 	}
 
 	auto Bypass() -> void
