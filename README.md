@@ -1,5 +1,5 @@
 # AlphaRom_Crack
-simple demo to show how to crack a alpharom protected game
+a project to show how to crack a alpharom protected game
 
 ## Build
 - xmake
@@ -18,12 +18,11 @@ simple demo to show how to crack a alpharom protected game
 ```
 copy `example/version` to any other place (Do not build in the current directory！)  
 modify `version/src/dllmain.cpp` to adapt your game  
-after that open terminal. 
 ```shell
 > xmake config -a x86
 > xmake build
 ```
-copy `build/windows/x86/release/version.dll` to game directory.  
+copy `build/windows/x86/release/version.dll` to game directory  
 
 ## How AlphaRom works？
 first we need to know the game that protected by alpharom uses themida protection, at game's exe startup use winapi VirtualAlloc to allocate memory used to load a dll from memory instead of loading from a dll file, and this dll named sarcheck.dll. alpharom's validation algorithm is placed in sarcheck.dll, so alpharom is actually a dll named sarcheck.dll, the reason why we don't see sarcheck.dll file in game directory is because it's using themida to bind the dll in to game's exe and load this dll at startup from memory.  
