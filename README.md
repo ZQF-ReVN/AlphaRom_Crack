@@ -19,6 +19,19 @@ a project to show how to crack a alpharom protected game
 ```shell
 > git clone --depth=1 https://github.com/Dir-A/AlphaRom_Crack.git
 ```
+- cd to `quick-start` dir
+```shell
+> cd /d test/quick-start/
+```
+- open with vs
+```shell
+> xmake_open_vs.dat
+```
+- build
+```shell
+> xmake_build.bat
+```
+> build or vs build binary file is output to `quick-start/build/windows/x86/`
 
 ## How AlphaRom works？
 first we need to know the game that protected by alpharom uses themida protection, at game's exe startup use winapi VirtualAlloc to allocate memory used to load a dll from memory instead of loading from dll file, and this dll named sarcheck.dll. alpharom's validation algorithm is placed in sarcheck.dll, so alpharom is actually a dll named sarcheck.dll, the reason why we don't see sarcheck.dll file in game directory is because it's using themida to bind the dll in to game's exe and load this dll at startup from memory.  
