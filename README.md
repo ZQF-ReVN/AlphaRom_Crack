@@ -28,6 +28,14 @@ An example of how to use this library
 > xmake_build.bat
 ```
 
+## Debug or modify library
+If you want to debug or modify the library
+- install all requires described in Quick Start
+- clone project
+- familiar with xmake
+  - do what you need to do.
+- never heard of xmake
+  - click xmake_open_vs.bat than work with vs
 ## How AlphaRom works？
 first we need to know the game that protected by alpharom uses themida protection, at game's exe startup use winapi VirtualAlloc to allocate memory used to load a dll from memory instead of loading from dll file, and this dll named sarcheck.dll. alpharom's validation algorithm is placed in sarcheck.dll, so alpharom is actually a dll named sarcheck.dll, the reason why we don't see sarcheck.dll file in game directory is because it's using themida to bind the dll in to game's exe and load this dll at startup from memory.  
 So if we can prevent the loading of sarcheck.dll we can bypass alpharom，or just modify the dll to disable alpharom's checker.
